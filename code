@@ -1,0 +1,113 @@
+#define pin 3
+#define frequancy 525
+#define pointWait 100
+#define dashWait 350
+
+String str = "abc/", s = "", sConvert = "", point = ".", dash = "-";
+
+String a = ".-",
+  b = "-...",
+  c = "-.-.",
+  d = "-..",
+  e = ".",
+  f = "..-.",
+  g = "--.",
+  h = "....",
+  i = "..";
+
+void setup() {
+  pinMode(pin, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void waitChar()
+{
+  delay(350);
+}
+
+void wait()
+{
+  delay(100);
+}
+
+void morsePoint()
+{
+  tone(pin, frequancy);
+  delay(pointWait);
+  noTone(pin);
+}
+
+void morseDash()
+{
+  tone(pin, frequancy);
+  delay(dashWait);
+  noTone(pin);
+}
+
+void morse(String str)
+{
+  for (int i = 0; i < str.length(); i++)
+  {
+    sConvert = str[i];
+    
+    if (sConvert == point)
+    {
+      morsePoint();
+    }
+    else
+    {
+      morseDash();
+    }
+
+    wait();
+  }
+}
+
+void loop() {
+  for (int i = 0; i < str.length(); i++)
+  {
+
+    sConvert = str[i];
+    
+    if (sConvert == "a")
+    {
+      morse(a);
+    }
+    else if (sConvert == "b")
+    {
+      morse(b);
+    }
+    else if (sConvert == "c")
+    {
+      morse(c);
+    }
+    else if (sConvert == "d")
+    {
+      morse(d);
+    }
+    else if (sConvert == "e")
+    {
+      morse(e);
+    }
+    else if (sConvert == "f")
+    {
+      morse(f);
+    }
+    else if (sConvert == "g")
+    {
+      morse(g);
+    }
+    else if (sConvert == "h")
+    {
+      morse(h);
+    }
+    else if (sConvert == "/")
+    {
+      delay(700);
+    }
+
+    waitChar();
+    
+  }
+}
